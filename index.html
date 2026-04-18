@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nahid Zeinali — Senior AI Research Scientist</title>
+<meta name="description" content="Nahid Zeinali, PhD — Senior AI Research Scientist and Data Scientist specializing in NLP, large language models, and medical informatics." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --cream: #f6f2e9;
+    --cream-soft: #eee7d7;
+    --ink: #1a1512;
+    --ink-soft: #3d342e;
+    --muted: #8a7f74;
+    --line: #d9cfbd;
+    --accent: #b04a2b;
+    --accent-deep: #7a2f18;
+    --paper: #fdfbf5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Paper grain texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .serif { font-family: 'Fraunces', Georgia, serif; }
+  .mono  { font-family: 'JetBrains Mono', monospace; font-size: 0.8em; letter-spacing: 0.02em; }
+
+  a { color: inherit; text-decoration: none; transition: color 0.2s; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(246, 242, 233, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 50;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-bottom-color: var(--line); }
+
+  .nav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 1.1rem clamp(1.5rem, 4vw, 3rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-brand {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .nav-brand em { font-style: italic; font-weight: 400; color: var(--accent); }
+
+  .nav-links { display: flex; gap: 1.8rem; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  .nav-links a { color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--accent); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* HERO */
+  .hero {
+    padding: clamp(4rem, 10vh, 8rem) 0 clamp(3rem, 7vh, 5rem);
+    position: relative;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 2.2rem;
+  }
+  .hero-meta::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 9vw, 7.5rem);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    line-height: 0.95;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .hero-subtitle {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 42ch;
+    margin-bottom: 3rem;
+    line-height: 1.3;
+  }
+
+  .hero-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--line);
+  }
+  @media (max-width: 780px) { .hero-body { grid-template-columns: 1fr; } }
+
+  .hero-body p {
+    font-size: 1.03rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .hero-body p + p { margin-top: 1.1rem; }
+
+  /* STATS STRIP */
+  .stats {
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(3rem, 6vh, 4.5rem) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .stats::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    position: relative;
+  }
+  @media (max-width: 780px) { .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; } }
+
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--cream);
+    display: block;
+  }
+  .stat-num em { font-style: italic; color: #d96a48; }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #b8ac9a;
+    margin-top: 0.8rem;
+    display: block;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: clamp(4rem, 10vh, 7rem) 0;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+  .section-head h2 {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 300;
+  }
+  .section-head h2 em { font-style: italic; color: var(--accent); }
+
+  /* EXPERIENCE (timeline) */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 140px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line);
+  }
+  @media (max-width: 780px) { .timeline::before { display: none; } }
+
+  .xp {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2.5rem;
+    padding: 2.2rem 0;
+    position: relative;
+    border-bottom: 1px solid var(--line);
+  }
+  .xp:last-child { border-bottom: none; }
+  @media (max-width: 780px) { .xp { grid-template-columns: 1fr; gap: 0.8rem; padding: 1.8rem 0; } }
+
+  .xp-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    padding-top: 0.4rem;
+    position: relative;
+  }
+  .xp-date::after {
+    content: '';
+    position: absolute;
+    right: -2.5rem;
+    top: 0.85rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--accent);
+    transform: translateX(50%);
+  }
+  @media (max-width: 780px) { .xp-date::after { display: none; } }
+
+  .xp-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    letter-spacing: -0.01em;
+  }
+  .xp-org {
+    font-size: 0.95rem;
+    color: var(--accent-deep);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .xp ul {
+    list-style: none;
+    padding: 0;
+  }
+  .xp ul li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+  }
+  .xp ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* PUBLICATIONS */
+  .pub-year-group { margin-bottom: 3rem; }
+  .pub-year {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  .pub {
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 1rem;
+    transition: padding 0.25s;
+  }
+  .pub:hover { padding-left: 0.5rem; }
+  .pub-idx {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    padding-top: 0.25rem;
+  }
+  .pub-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.35;
+    margin-bottom: 0.35rem;
+  }
+  .pub-journal {
+    font-size: 0.88rem;
+    color: var(--accent-deep);
+    font-style: italic;
+    margin-bottom: 0.2rem;
+  }
+  .pub-authors {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .pub-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--accent);
+    color: var(--paper);
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+  }
+
+  /* EXPERTISE */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+  .exp-cell {
+    padding: 2rem 1.8rem;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+    transition: background 0.25s;
+  }
+  .exp-cell:hover { background: var(--cream-soft); }
+  .exp-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+  .exp-cell h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .exp-cell p {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    padding: 0.25rem 0.55rem;
+    border-radius: 2px;
+    color: var(--ink-soft);
+  }
+
+  /* EDUCATION + AWARDS */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+  @media (max-width: 780px) { .two-col { grid-template-columns: 1fr; } }
+
+  .sub-head {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    color: var(--accent-deep);
+  }
+  .edu-item, .award-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .edu-item:last-child, .award-item:last-child { border-bottom: none; }
+  .edu-deg {
+    font-family: 'Fraunces', serif;
+    font-size: 1.08rem;
+    font-weight: 500;
+  }
+  .edu-school {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin-top: 0.15rem;
+  }
+  .edu-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* CONTACT */
+  .contact {
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(5rem, 12vh, 9rem) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    pointer-events: none;
+  }
+  .contact-inner { position: relative; }
+  .contact h2 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    line-height: 1.02;
+  }
+  .contact h2 em { font-style: italic; color: #d96a48; }
+  .contact p {
+    font-size: 1.1rem;
+    color: #c6bbac;
+    max-width: 48ch;
+    margin-bottom: 3rem;
+  }
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .c-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.4rem;
+    border: 1px solid #4a3f37;
+    background: transparent;
+    color: var(--paper);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.25s;
+  }
+  .c-link:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .c-link svg { width: 14px; height: 14px; }
+
+  footer {
+    padding: 2rem 0;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    background: var(--cream);
+  }
+
+  /* Entrance animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-meta, .hero h1, .hero-subtitle, .hero-body {
+    animation: fadeUp 0.9s ease-out backwards;
+  }
+  .hero-meta     { animation-delay: 0.05s; }
+  .hero h1       { animation-delay: 0.15s; }
+  .hero-subtitle { animation-delay: 0.3s; }
+  .hero-body     { animation-delay: 0.45s; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">Nahid <em>Zeinali</em></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero container" id="top">
+  <div class="hero-meta">Senior AI Research Scientist · San Diego, CA</div>
+  <h1>Building AI that <em>transforms</em> healthcare.</h1>
+  <p class="hero-subtitle">Nine years at the intersection of natural language processing, large language models, and medical informatics — turning clinical data into trustworthy, deployable tools.</p>
+
+  <div class="hero-body" id="about">
+    <p>I design end-to-end AI pipelines for clinicians, patients, and researchers — from retrieval-augmented generation systems to domain-specific language models trained on millions of electronic health records.</p>
+    <p>My work spans academia, industry, and national laboratories, with a focus on rigor, reproducibility, and real-world clinical impact. I hold a Ph.D. in Informatics from the University of Iowa and have co-authored more than a dozen peer-reviewed publications.</p>
+  </div>
+</header>
+
+<section class="stats">
+  <div class="container stats-grid">
+    <div>
+      <span class="stat-num">9<em>+</em></span>
+      <span class="stat-label">Years Experience</span>
+    </div>
+    <div>
+      <span class="stat-num">12<em>+</em></span>
+      <span class="stat-label">Peer-reviewed Publications</span>
+    </div>
+    <div>
+      <span class="stat-num">3M<em>+</em></span>
+      <span class="stat-label">EHR Notes Analyzed</span>
+    </div>
+    <div>
+      <span class="stat-num">4<em>+</em></span>
+      <span class="stat-label">Domain-Specific LLMs Built</span>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="container reveal">
+  <div class="section-head">
+    <span class="section-num">01 /</span>
+    <h2>Professional <em>Experience</em></h2>
+  </div>
+
+  <div class="timeline">
+
+    <div class="xp">
+      <div class="xp-date">Feb 2025 —<br>Present</div>
+      <div>
+        <div class="xp-title">AI Research Scientist</div>
+        <div class="xp-org">California Medical Innovation Institute (CalMI²) · San Diego, CA</div>
+        <ul>
+          <li>Leading AI-driven tools for NIH data management planning (DMP-Chef) and automated poster metadata extraction (Posters.science).</li>
+          <li>Built the NIH DMP Generator pipeline using GPT-4, Gemini, and Llama 3.3 with semantic RAG and prompt engineering.</li>
+          <li>Contributing to the AI-Ready EyeACT vision data portal with Croissant metadata for FAIR-compliant biomedical imaging.</li>
+          <li>Serving as Project Manager for DMP-Chef tool design and implementation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="xp">
+      <div class="xp-date">Aug 2021 —<br>Jan 2025</div>
+      <div>
+        <div class="xp-title">Graduate Research &amp; Teaching Assistant</div>
+        <div class="xp-org">University of Iowa, Department of Computer Science · Iowa City, IA</div>
+        <ul>
+          <li>Designed and implemented large-scale NLP/LLM systems — Symptom-BERT, Care-BERT, Spiritual-BERT — for clinical concept extraction from 3M+ EHR notes.</li>
+          <li>Built GPT-4 pipelines for synthetic clinical note generation, enabling external validation and data augmentation.</li>
+          <li>Developed predictive models (Random Forest, XGBoost + SHAP) forecasting 12 cancer-related symptoms for clinical use.</li>
+          <li>Contributed to the OASIS mobile app for real-time symptom monitoring; mentored students and co-authored 10+ peer-reviewed publications.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="xp">
+      <div class="xp-date">Jun 2024 —<br>Sep 2024</div>
+      <div>
+        <div class="xp-title">NLP Data Scientist</div>
+        <div class="xp-org">National Cancer Institute, NIH · Maryland, USA</div>
+        <ul>
+          <li>Designed an LLM-powered literature chatbot for extracting gene–disease associations in rare conditions like Farber disease.</li>
+          <li>Accelerated biomedical knowledge discovery for rare-disease researchers using RAG, NLP, and semantic search (NCATS RARe-SOURCE™).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="xp">
+      <div class="xp-date">Feb 2019 —<br>Jul 2021</div>
+      <div>
+        <div class="xp-title">Software Engineer</div>
+        <div class="xp-org">Khorshid Hospital · Isfahan, Iran</div>
+        <ul>
+          <li>Developed and deployed EMR, PIS, and LIS systems, improving clinical workflow efficiency by 35%.</li>
+          <li>Built a heart-failure symptom-tracking mobile app serving 3,000+ patients in rural communities.</li>
+          <li>Published research on digital health and health information systems interoperability.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="xp">
+      <div class="xp-date">Dec 2016 —<br>Feb 2019</div>
+      <div>
+        <div class="xp-title">Software Engineer</div>
+        <div class="xp-org">Parisian Institute · Tehran, Iran</div>
+        <ul>
+          <li>Built an EHR management dashboard that reduced report turnaround time by 68%.</li>
+          <li>Trained 1,500+ clinicians in EHR adoption and digital transformation best practices.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="publications" class="container reveal" style="background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="section-head">
+    <span class="section-num">02 /</span>
+    <h2>Selected <em>Publications</em></h2>
+  </div>
+
+  <div class="pub-year-group">
+    <div class="pub-year">2025</div>
+
+    <div class="pub">
+      <div class="pub-idx">01</div>
+      <div>
+        <div class="pub-title">Using Large Language Models to Detect Anxiety and Nausea/Vomiting Documentation in Clinical Notes of Patients with Cancer</div>
+        <div class="pub-journal">CIN: Computers, Informatics, Nursing</div>
+        <div class="pub-authors">Zeinali N., Gilbertson-White S., et al.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-idx">02</div>
+      <div>
+        <div class="pub-title">Goals-of-Care in Older Adults with Heart Failure, Cancer, and Dementia: Classifying Comfort and Life-Sustaining Preferences Using Priorities-BERT</div>
+        <div class="pub-journal">Innovation in Aging</div>
+        <div class="pub-authors">AlBashayreh A., Zeinali N., et al.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-idx">03</div>
+      <div>
+        <div class="pub-title">An Informatics Approach to Characterizing Spiritual Care Documentation in Electronic Health Records of Older Adults</div>
+        <div class="pub-journal">Applied Clinical Informatics (ACI)</div>
+        <div class="pub-authors">AlBashayreh A., Zeinali N., Gilbertson-White S.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-year-group">
+    <div class="pub-year">2024</div>
+
+    <div class="pub">
+      <div class="pub-idx">04</div>
+      <div>
+        <div class="pub-title">Symptom-BERT: Enhancing Cancer Symptom Detection in EHR Clinical Notes</div>
+        <div class="pub-journal">Journal of Pain and Symptom Management</div>
+        <div class="pub-authors">Zeinali N., Gilbertson-White S., et al.</div>
+        <span class="pub-badge">★ AMIA Year in Review</span>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-idx">05</div>
+      <div>
+        <div class="pub-title">Machine Learning Approaches to Predict Symptoms in People with Cancer: A Systematic Review</div>
+        <div class="pub-journal">JMIR Cancer</div>
+        <div class="pub-authors">Zeinali N., Gilbertson-White S., et al.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-idx">06</div>
+      <div>
+        <div class="pub-title">Natural Language Processing Accurately Differentiates Cancer Symptom Information in EHR Narratives</div>
+        <div class="pub-journal">JCO Clinical Cancer Informatics</div>
+        <div class="pub-authors">Bandyopadhyay A., AlBashayreh A., Zeinali N., et al.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-idx">07</div>
+      <div>
+        <div class="pub-title">Predictors of Concordance Between Patient-Reported and Provider-Documented Symptoms in Cancer and Multimorbidity</div>
+        <div class="pub-journal">Applied Clinical Informatics (ACI)</div>
+        <div class="pub-authors">Gilbertson-White S., AlBashayreh A., Bandyopadhyay A., Zeinali N., et al.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-idx">08</div>
+      <div>
+        <div class="pub-title">Using Real-World EHR Data to Predict the Development of 12 Cancer-Related Symptoms in Multimorbidity</div>
+        <div class="pub-journal">Open JAMIA</div>
+        <div class="pub-authors">Bandyopadhyay A., AlBashayreh A., Zeinali N., et al.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-idx">09</div>
+      <div>
+        <div class="pub-title">Comparison of BERT Implementations for Enhanced Cancer Symptom Extraction from Electronic Health Records</div>
+        <div class="pub-journal">IEEE AIMHC 2024 Conference Proceedings</div>
+        <div class="pub-authors">Zeinali N., AlBashayreh A., Gilbertson-White S., et al.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-year-group">
+    <div class="pub-year">Earlier</div>
+
+    <div class="pub">
+      <div class="pub-idx">10</div>
+      <div>
+        <div class="pub-title">Application of Big Data Analysis in Healthcare Based on the Six Building Blocks of Health Systems' Framework: A Survey</div>
+        <div class="pub-journal">Dokkyo Journal of Medical Sciences · 2021</div>
+        <div class="pub-authors">Nazari E., Zeinali N., et al.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-idx">11</div>
+      <div>
+        <div class="pub-title">Provide Interoperability Model to Interact in Hospital Information Systems</div>
+        <div class="pub-journal">Journal of Health and Biomedical Informatics · 2017</div>
+        <div class="pub-authors">Zeinali N., Asosheh A., et al.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-idx">12</div>
+      <div>
+        <div class="pub-title">A Conceptual Model to Solve the Problem of Interoperability in Health Information Systems</div>
+        <div class="pub-journal">International Symposium on Telecommunications (IST) · 2016</div>
+        <div class="pub-authors">Zeinali N., Asosheh A., et al.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-idx">13</div>
+      <div>
+        <div class="pub-title">The Common Applications of Social Networks in Healthcare</div>
+        <div class="pub-journal">Health Information Management · 2016</div>
+        <div class="pub-authors">Delaram Z., Zeinali N., et al.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="presentations" class="container reveal">
+  <div class="section-head">
+    <span class="section-num">03 /</span>
+    <h2>Presentations &amp; <em>Posters</em></h2>
+  </div>
+
+  <div class="pub-year-group">
+    <div class="pub-year">2026</div>
+    <div class="pub">
+      <div class="pub-idx">→</div>
+      <div>
+        <div class="pub-title">Toward Envision Portal: Designing a FAIR and AI-Ready Framework for Ophthalmic Imaging Sharing and Discovery</div>
+        <div class="pub-journal">ARVO 2026 Annual Meeting · Upcoming</div>
+        <div class="pub-authors">Patel B., Zeinali N., et al.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-year-group">
+    <div class="pub-year">2025</div>
+    <div class="pub">
+      <div class="pub-idx">→</div>
+      <div>
+        <div class="pub-title">Evaluating the Effectiveness of an Open-Source Large Language Model in Drafting NIH Data Management Plans</div>
+        <div class="pub-journal">International Data Week — SciDataCon 2025 · Presenter</div>
+        <div class="pub-authors">Zeinali N., Patel B., et al.</div>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-idx">→</div>
+      <div>
+        <div class="pub-title">Leveraging Large Language Models for Named Entity Recognition of Anxiety and Nausea/Vomiting in Patients with Cancer</div>
+        <div class="pub-journal">AMIA Informatics Summit 2025 · Presenter</div>
+        <div class="pub-authors">Zeinali N., Gilbertson-White S., et al.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-year-group">
+    <div class="pub-year">2024</div>
+    <div class="pub">
+      <div class="pub-idx">→</div>
+      <div>
+        <div class="pub-title">Advanced Detection of Nausea/Vomiting and Anxiety in Patients with Cancer</div>
+        <div class="pub-journal">AMIA Annual Symposium 2024 · Presenter</div>
+        <div class="pub-authors">Zeinali N., Gilbertson-White S., et al.</div>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-idx">→</div>
+      <div>
+        <div class="pub-title">Comparison of BERT Implementations for Enhanced Cancer Symptoms Extraction</div>
+        <div class="pub-journal">IEEE AIMHC 2024 · Oral Presentation · Laguna Hills, CA</div>
+        <div class="pub-authors">Zeinali N., AlBashayreh A., Gilbertson-White S., et al.</div>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-idx">→</div>
+      <div>
+        <div class="pub-title">Leveraging Spiritual-BERT for Characterizing Spiritual Care Documentation in EHRs of Older Adults with Heart Failure</div>
+        <div class="pub-journal">AMIA Annual Symposium 2024</div>
+        <div class="pub-authors">AlBashayreh A., Zeinali N., Gilbertson-White S.</div>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-idx">→</div>
+      <div>
+        <div class="pub-title">Innovating the Detection of Care Priorities in Heart Failure Using Large Language Models</div>
+        <div class="pub-journal">GSA 2024 · Poster</div>
+        <div class="pub-authors">AlBashayreh A., Zeinali N., et al.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="expertise" class="container reveal" style="background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="section-head">
+    <span class="section-num">04 /</span>
+    <h2>Technical <em>Expertise</em></h2>
+  </div>
+
+  <div class="expertise-grid">
+    <div class="exp-cell">
+      <span class="exp-icon">◉</span>
+      <h3>AI &amp; Natural Language Processing</h3>
+      <p>Large language models, retrieval-augmented generation, fine-tuning, and agentic AI systems.</p>
+      <div class="tag-list">
+        <span class="tag">GPT</span><span class="tag">Llama</span><span class="tag">BERT</span>
+        <span class="tag">RoBERTa</span><span class="tag">RAG</span><span class="tag">LangChain</span>
+        <span class="tag">LangGraph</span><span class="tag">Hugging Face</span><span class="tag">Ollama</span>
+      </div>
+    </div>
+
+    <div class="exp-cell">
+      <span class="exp-icon">◆</span>
+      <h3>Machine Learning &amp; Data Science</h3>
+      <p>Predictive modeling, evaluation, and explainability for clinically meaningful outcomes.</p>
+      <div class="tag-list">
+        <span class="tag">Scikit-learn</span><span class="tag">TensorFlow</span>
+        <span class="tag">Keras</span><span class="tag">XGBoost</span><span class="tag">SHAP</span>
+      </div>
+    </div>
+
+    <div class="exp-cell">
+      <span class="exp-icon">▲</span>
+      <h3>MLOps &amp; Cloud</h3>
+      <p>End-to-end pipelines from experiment tracking to production deployment.</p>
+      <div class="tag-list">
+        <span class="tag">MLflow</span><span class="tag">DVC</span><span class="tag">Airflow</span>
+        <span class="tag">Docker</span><span class="tag">GitHub Actions</span>
+        <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">HPC</span>
+      </div>
+    </div>
+
+    <div class="exp-cell">
+      <span class="exp-icon">▣</span>
+      <h3>Databases &amp; Vector Search</h3>
+      <p>Traditional and vector stores for semantic retrieval at scale.</p>
+      <div class="tag-list">
+        <span class="tag">SQL Server</span><span class="tag">PostgreSQL</span>
+        <span class="tag">MongoDB</span><span class="tag">FAISS</span><span class="tag">Chroma</span>
+        <span class="tag">Pinecone</span><span class="tag">Cassandra</span>
+      </div>
+    </div>
+
+    <div class="exp-cell">
+      <span class="exp-icon">◈</span>
+      <h3>Software Engineering</h3>
+      <p>Full-stack development across backend services, mobile, and research tooling.</p>
+      <div class="tag-list">
+        <span class="tag">Python</span><span class="tag">C/C++</span><span class="tag">C#</span>
+        <span class="tag">JavaScript</span><span class="tag">MATLAB</span>
+        <span class="tag">Android</span><span class="tag">ASP.NET</span>
+      </div>
+    </div>
+
+    <div class="exp-cell">
+      <span class="exp-icon">✦</span>
+      <h3>Medical Informatics</h3>
+      <p>Domain expertise in EHR systems, clinical terminologies, and FAIR biomedical data.</p>
+      <div class="tag-list">
+        <span class="tag">EHR/EMR</span><span class="tag">Clinical NLP</span>
+        <span class="tag">FAIR Data</span><span class="tag">Croissant</span>
+        <span class="tag">Biomedical Ontologies</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="container reveal">
+  <div class="section-head">
+    <span class="section-num">05 /</span>
+    <h2>Education &amp; <em>Recognition</em></h2>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="sub-head">Education</div>
+
+      <div class="edu-item">
+        <div class="edu-deg">Ph.D. in Informatics</div>
+        <div class="edu-school">University of Iowa</div>
+        <div class="edu-date">2021 — 2025</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-deg">M.Sc. in Informatics</div>
+        <div class="edu-school">University of Iowa</div>
+        <div class="edu-date">2021 — 2025</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-deg">M.Sc. in Medical Informatics</div>
+        <div class="edu-school">Tarbiat Modares University</div>
+        <div class="edu-date">2013 — 2016</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-deg">B.S. in Computer Software Engineering</div>
+        <div class="edu-school">Azad University</div>
+        <div class="edu-date">2005 — 2010</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sub-head">Honors &amp; Awards</div>
+
+      <div class="award-item">
+        <div class="edu-deg">Excellent Award in Research</div>
+        <div class="edu-school">University of Iowa · 2025</div>
+      </div>
+      <div class="award-item">
+        <div class="edu-deg">Ballard &amp; Seashore Dissertation Fellowship</div>
+        <div class="edu-school">2024</div>
+      </div>
+      <div class="award-item">
+        <div class="edu-deg">Student Impact Grant</div>
+        <div class="edu-school">GPSG/GSS Awards · 2021 — 2024</div>
+      </div>
+      <div class="award-item">
+        <div class="edu-deg">Recruitment Fellowship</div>
+        <div class="edu-school">IGPI · 2021 — 2024</div>
+      </div>
+      <div class="award-item">
+        <div class="edu-deg">Reviewer</div>
+        <div class="edu-school">AMIA Informatics Summit 2025</div>
+      </div>
+      <div class="award-item">
+        <div class="edu-deg">Student Volunteer</div>
+        <div class="edu-school">AMIA Annual Symposium · 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container contact-inner">
+    <h2>Let's <em>connect.</em></h2>
+    <p>I'm always open to collaborations on clinical AI, LLM research, and biomedical informatics. Reach out through any of the channels below.</p>
+    <div class="contact-links">
+      <a class="c-link" href="https://www.linkedin.com/in/nahid-zeinali-15440910b/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14M8.34 18.34V10.6H5.67v7.74h2.67M7 9.42a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1M18.34 18.34v-4.24c0-2.48-1.34-3.64-3.13-3.64a2.7 2.7 0 0 0-2.45 1.35V10.6h-2.67v7.74h2.67v-4.29c0-1.13.22-2.22 1.62-2.22 1.38 0 1.39 1.29 1.39 2.29v4.22h2.57Z"/></svg>
+        LinkedIn
+      </a>
+      <a class="c-link" href="https://github.com/Nahidzeinali-web" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.84-2.34 4.68-4.57 4.93.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+        GitHub
+      </a>
+      <a class="c-link" href="https://scholar.google.com/citations?user=RRW-qkEAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 2M5.07 9.56L12 13.34l6.93-3.78L12 5.78 5.07 9.56M17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72Z"/></svg>
+        Google Scholar
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Nahid Zeinali · Designed with care · San Diego, CA
+</footer>
+
+<script>
+  // Nav border on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('is-visible')),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
