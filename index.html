@@ -1317,19 +1317,55 @@
   .news-text strong { color: var(--black); font-weight: 600; }
 
   /* ---- RESEARCH INTERESTS ---- */
-  .research-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-  .research-tag {
-    display: inline-flex; align-items: center; gap: 0.45rem;
-    padding: 0.52rem 1rem;
-    background: var(--bg); border: 1px solid var(--gray-line);
-    font-size: 0.87rem; font-weight: 600; color: var(--ink);
-    font-family: 'Source Sans 3', sans-serif;
-    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
-    cursor: default;
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
   }
-  .research-tag:hover {
-    background: var(--gold); border-color: var(--gold);
-    color: var(--black); transform: translateY(-2px);
+  @media (max-width: 860px) { .research-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 500px)  { .research-grid { grid-template-columns: 1fr; } }
+  .research-card {
+    border: 1px solid var(--gray-line);
+    border-top: 3px solid var(--gold);
+    padding: 1.5rem 1.5rem 1.8rem;
+    background: var(--bg);
+    transition: box-shadow 0.22s, transform 0.22s;
+  }
+  .research-card:hover {
+    box-shadow: 0 10px 32px -12px rgba(0,0,0,0.15);
+    transform: translateY(-4px);
+  }
+  .research-card-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 1.1rem;
+  }
+  .research-card-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .research-card-list li {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+    padding-left: 0.9rem;
+    position: relative;
+    line-height: 1.4;
+  }
+  .research-card-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
   }
 
   /* ---- GITHUB STATS ---- */
@@ -1636,18 +1672,37 @@
       <p class="section-intro">Core areas spanning clinical AI, language models, and biomedical informatics.</p>
     </div>
     <div class="research-grid">
-      <span class="research-tag">Large Language Models</span>
-      <span class="research-tag">Clinical NLP</span>
-      <span class="research-tag">Retrieval-Augmented Generation</span>
-      <span class="research-tag">Multimodal AI</span>
-      <span class="research-tag">EHR Analytics</span>
-      <span class="research-tag">Biomedical Informatics</span>
-      <span class="research-tag">Generative AI</span>
-      <span class="research-tag">Cancer Symptom Detection</span>
-      <span class="research-tag">Transformer Architectures</span>
-      <span class="research-tag">Named Entity Recognition</span>
-      <span class="research-tag">FAIR Data Standards</span>
-      <span class="research-tag">Healthcare AI</span>
+
+      <div class="research-card">
+        <div class="research-card-title">Language Models</div>
+        <ul class="research-card-list">
+          <li>Large Language Models</li>
+          <li>Retrieval-Augmented Generation</li>
+          <li>Generative AI</li>
+          <li>Multimodal AI</li>
+        </ul>
+      </div>
+
+      <div class="research-card">
+        <div class="research-card-title">Clinical Informatics</div>
+        <ul class="research-card-list">
+          <li>Clinical NLP</li>
+          <li>EHR Analytics</li>
+          <li>Cancer Symptom Detection</li>
+          <li>Healthcare AI</li>
+        </ul>
+      </div>
+
+      <div class="research-card">
+        <div class="research-card-title">Methods &amp; Data</div>
+        <ul class="research-card-list">
+          <li>Transformer Architectures</li>
+          <li>Named Entity Recognition</li>
+          <li>Biomedical Informatics</li>
+          <li>FAIR Data Standards</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </section>
