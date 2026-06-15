@@ -1207,27 +1207,26 @@
   }
   .proj.proj-show { animation: projFadeIn 0.28s ease forwards; }
 
-  /* ---- COPY CITATION BUTTON ---- */
-  .copy-cite-btn {
+  /* ---- VIEW PAPER LINK ---- */
+  .pub-view-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.28rem;
+    gap: 0.3rem;
     background: none;
     border: 1px solid var(--gray-line);
     color: var(--gray-muted);
-    cursor: pointer;
-    padding: 0.18rem 0.5rem;
+    text-decoration: none;
+    padding: 0.18rem 0.55rem;
     margin-left: 0.6rem;
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-family: 'Source Sans 3', sans-serif;
     font-weight: 600;
     vertical-align: middle;
-    transition: background 0.18s, color 0.18s, border-color 0.18s;
     letter-spacing: 0.02em;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
   }
-  .copy-cite-btn:hover { background: var(--gold-soft); border-color: var(--gold-deep); color: var(--ink); }
-  .copy-cite-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
-  .copy-cite-btn.copied { background: #22c55e; border-color: #22c55e; color: #fff; }
+  .pub-view-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+  .pub-view-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
 
   /* ---- TYPING CURSOR ---- */
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
@@ -2339,37 +2338,58 @@
   });
 })();
 
-/* ===== COPY CITATION ===== */
+/* ===== PUBLICATION VIEW-PAPER LINKS ===== */
 (function () {
-  var COPY_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-  var CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  /* Map: substring of paper title → canonical URL */
+  var URLS = {
+    'Using Large Language Models to Detect Anxiety':
+      'https://doi.org/10.1097/CIN.0000000000001418',
+    'An Informatics Approach to Characterizing Spiritual Care Documentation':
+      'https://www.thieme-connect.de/products/ejournals/abstract/10.1055/a-2599-6300',
+    'Symptom-BERT: Enhancing Cancer Symptom Detection':
+      'https://www.jpsmjournal.com/article/S0885-3924(24)00784-X/abstract',
+    'Machine Learning Approaches to Predict Symptoms in People with Cancer':
+      'https://cancer.jmir.org/2024/1/e52322',
+    'Natural Language Processing Accurately Differentiates Cancer Symptom Information':
+      'https://ascopubs.org/doi/abs/10.1200/CCI.23.00235',
+    'Predictors of Concordance Between Patient-Reported and Provider-Documented':
+      'https://pubmed.ncbi.nlm.nih.gov/?term=Gilbertson-White+concordance+patient-reported+provider-documented+cancer+multimorbidity',
+    'Using Real-World EHR Data to Predict the Development':
+      'https://academic.oup.com/jamiaopen/article/7/3/ooae082/7756390',
+    'Innovating the Detection of Care Priorities in Heart Failure':
+      'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11693243/',
+    'Application of Big Data':
+      'https://www.researchgate.net/publication/348972219',
+    'Conceptual Model to Solve the Problem of Interoperability':
+      'https://www.researchgate.net/publication/315473228',
+    'Provide Interoperability Model to Interact':
+      'https://scholar.google.com/citations?user=RRW-qkEAAAAJ&hl=en',
+    'Common Applications of Social Networks in Healthcare':
+      'https://scholar.google.com/citations?user=RRW-qkEAAAAJ&hl=en'
+  };
+
+  var EXT_SVG = '<svg viewBox=”0 0 24 24” fill=”none” stroke=”currentColor” stroke-width=”2” stroke-linecap=”round” stroke-linejoin=”round”><path d=”M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6”/><polyline points=”15 3 21 3 21 9”/><line x1=”10” y1=”14” x2=”21” y2=”3”/></svg>';
+
+  function findUrl(text) {
+    for (var key in URLS) {
+      if (text.indexOf(key) !== -1) return URLS[key];
+    }
+    return null;
+  }
+
   document.querySelectorAll('.pub-table tbody tr').forEach(function (row) {
     var titleEl = row.querySelector('.pub-title-cell');
-    var authEl = row.querySelector('.pub-authors');
-    var venueEl = row.querySelector('.pub-venue');
-    var yearEl = row.querySelector('.pub-year-cell');
-    if (!titleEl || !authEl) return;
-    var titleText = Array.from(titleEl.childNodes).filter(function (n) { return n.nodeType === 3; }).map(function (n) { return n.textContent.trim(); }).join('');
-    if (!titleText) titleText = titleEl.textContent.trim().replace(/Cite$/, '').trim();
-    var authors = authEl.textContent.trim();
-    var venue = venueEl ? venueEl.textContent.trim() : '';
-    var year = yearEl ? yearEl.textContent.replace(/\D/g, '').slice(0, 4) : '';
-    var btn = document.createElement('button');
-    btn.className = 'copy-cite-btn';
-    btn.title = 'Copy citation';
-    btn.innerHTML = COPY_SVG + 'Cite';
-    titleEl.appendChild(btn);
-    btn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var cite = authors + '. “' + titleText + '.” ' + (venue ? venue + '. ' : '') + year;
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(cite.trim()).then(function () {
-          btn.innerHTML = CHECK_SVG + 'Copied!';
-          btn.classList.add('copied');
-          setTimeout(function () { btn.innerHTML = COPY_SVG + 'Cite'; btn.classList.remove('copied'); }, 2200);
-        });
-      }
-    });
+    if (!titleEl) return;
+    var titleText = titleEl.textContent.trim();
+    var url = findUrl(titleText);
+    if (!url) return;
+    var link = document.createElement('a');
+    link.className = 'pub-view-btn';
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.innerHTML = EXT_SVG + 'View Paper';
+    titleEl.appendChild(link);
   });
 })();
 
