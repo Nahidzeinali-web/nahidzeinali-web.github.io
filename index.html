@@ -27,6 +27,28 @@
     --bg-section: #fafaf7;
   }
 
+  /* ---- DARK MODE ---- */
+  [data-theme="dark"] {
+    --black: #f0f0f0;
+    --ink: #d8d8d8;
+    --ink-soft: #aaaaaa;
+    --gray-text: #888888;
+    --gray-muted: #666666;
+    --gray-line: #2e2e2e;
+    --gray-line-soft: #232323;
+    --bg: #111111;
+    --bg-soft: #1a1a1a;
+    --bg-section: #141414;
+    --gold-soft: #2a2200;
+  }
+  [data-theme="dark"] .util-bar { background: #050505; }
+  [data-theme="dark"] .util-bar a { color: #cccccc; }
+  [data-theme="dark"] .pub-table thead { background: #1c1c1c; }
+  [data-theme="dark"] .pub-table thead th { color: var(--ink); }
+  [data-theme="dark"] .contact-section { background: #050505; }
+  [data-theme="dark"] #back-to-top { background: #222; }
+  [data-theme="dark"] .exp-table thead { background: #1c1c1c; }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
@@ -1132,7 +1154,86 @@
     box-shadow: 0 6px 28px -10px rgba(0,0,0,0.18);
     backdrop-filter: saturate(1.1);
   }
+
+  /* ---- DARK MODE TOGGLE ---- */
+  #dark-toggle {
+    background: none;
+    border: 1px solid var(--gray-line);
+    color: var(--ink);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  #dark-toggle:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+  #dark-toggle svg { width: 16px; height: 16px; pointer-events: none; }
+  #dark-toggle .icon-sun { display: none; }
+  [data-theme="dark"] #dark-toggle .icon-moon { display: none; }
+  [data-theme="dark"] #dark-toggle .icon-sun { display: block; }
+
+  /* ---- PROJECT FILTER BAR ---- */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 2rem;
+  }
+  .filter-btn {
+    background: var(--bg);
+    border: 1px solid var(--gray-line);
+    color: var(--gray-text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4rem 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--black);
+  }
+  .proj.proj-hidden { display: none !important; }
+  @keyframes projFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .proj.proj-show { animation: projFadeIn 0.28s ease forwards; }
+
+  /* ---- COPY CITATION BUTTON ---- */
+  .copy-cite-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28rem;
+    background: none;
+    border: 1px solid var(--gray-line);
+    color: var(--gray-muted);
+    cursor: pointer;
+    padding: 0.18rem 0.5rem;
+    margin-left: 0.6rem;
+    font-size: 0.7rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    vertical-align: middle;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
+    letter-spacing: 0.02em;
+  }
+  .copy-cite-btn:hover { background: var(--gold-soft); border-color: var(--gold-deep); color: var(--ink); }
+  .copy-cite-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
+  .copy-cite-btn.copied { background: #22c55e; border-color: #22c55e; color: #fff; }
+
+  /* ---- TYPING CURSOR ---- */
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .typed-cursor { display:inline-block; animation: blink 0.9s step-end infinite; color: var(--gold-deep); }
 </style>
+<script>(function(){var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
 </head>
 <body>
 
@@ -2176,6 +2277,139 @@
     }, { rootMargin: '-25% 0px -65% 0px' });
     spySections.forEach(function (s) { spyObs.observe(s); });
   }
+})();
+
+/* ===== DARK MODE TOGGLE ===== */
+(function () {
+  var toggle = document.createElement('button');
+  toggle.id = 'dark-toggle';
+  toggle.setAttribute('aria-label', 'Toggle dark mode');
+  toggle.innerHTML =
+    '<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>' +
+    '<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+  var hamburger = document.querySelector('.hamburger');
+  hamburger.parentNode.insertBefore(toggle, hamburger);
+  toggle.addEventListener('click', function () {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  });
+})();
+
+/* ===== PROJECT FILTER ===== */
+(function () {
+  var grid = document.querySelector('.projects-grid');
+  if (!grid) return;
+  function getCat(tag) {
+    var t = (tag || '').toLowerCase();
+    if (/generative|llm|prompt|rag|dmp|metadata|evaluation/.test(t)) return 'Generative AI';
+    if (/clinical|nlp|ner|oncology|palliative|ehr|embeddings|collaborative|symptom|under-doc/.test(t)) return 'Clinical NLP';
+    if (/predictive|machine learning|forecasting|web mining|systematic review|big data/.test(t)) return 'ML & Data';
+    if (/literature|interoperability|health/.test(t)) return 'Biomedical';
+    return 'Other';
+  }
+  var projs = Array.from(grid.querySelectorAll('.proj'));
+  var bar = document.createElement('div');
+  bar.className = 'filter-bar';
+  ['All', 'Generative AI', 'Clinical NLP', 'ML & Data', 'Biomedical'].forEach(function (cat, i) {
+    var btn = document.createElement('button');
+    btn.className = 'filter-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = cat;
+    btn.dataset.cat = cat;
+    bar.appendChild(btn);
+  });
+  document.querySelector('#projects .section-header').after(bar);
+  bar.addEventListener('click', function (e) {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    bar.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var cat = btn.dataset.cat;
+    projs.forEach(function (p) {
+      var tagEl = p.querySelector('.proj-tag');
+      var show = cat === 'All' || getCat(tagEl ? tagEl.textContent : '') === cat;
+      if (show) {
+        p.classList.remove('proj-hidden');
+        p.classList.add('proj-show');
+        setTimeout(function () { p.classList.remove('proj-show'); }, 350);
+      } else {
+        p.classList.add('proj-hidden');
+      }
+    });
+  });
+})();
+
+/* ===== COPY CITATION ===== */
+(function () {
+  var COPY_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  var CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  document.querySelectorAll('.pub-table tbody tr').forEach(function (row) {
+    var titleEl = row.querySelector('.pub-title-cell');
+    var authEl = row.querySelector('.pub-authors');
+    var venueEl = row.querySelector('.pub-venue');
+    var yearEl = row.querySelector('.pub-year-cell');
+    if (!titleEl || !authEl) return;
+    var titleText = Array.from(titleEl.childNodes).filter(function (n) { return n.nodeType === 3; }).map(function (n) { return n.textContent.trim(); }).join('');
+    if (!titleText) titleText = titleEl.textContent.trim().replace(/Cite$/, '').trim();
+    var authors = authEl.textContent.trim();
+    var venue = venueEl ? venueEl.textContent.trim() : '';
+    var year = yearEl ? yearEl.textContent.replace(/\D/g, '').slice(0, 4) : '';
+    var btn = document.createElement('button');
+    btn.className = 'copy-cite-btn';
+    btn.title = 'Copy citation';
+    btn.innerHTML = COPY_SVG + 'Cite';
+    titleEl.appendChild(btn);
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var cite = authors + '. “' + titleText + '.” ' + (venue ? venue + '. ' : '') + year;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(cite.trim()).then(function () {
+          btn.innerHTML = CHECK_SVG + 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(function () { btn.innerHTML = COPY_SVG + 'Cite'; btn.classList.remove('copied'); }, 2200);
+        });
+      }
+    });
+  });
+})();
+
+/* ===== TYPING ANIMATION ===== */
+(function () {
+  var phrases = [
+    'Multimodal AI for biomedical discovery.',
+    'Clinical NLP at scale.',
+    'RAG systems for scientific knowledge.',
+    'LLMs for healthcare research.'
+  ];
+  var el = document.querySelector('.hero h1');
+  if (!el) return;
+  var idx = 0;
+  var charIdx = 0;
+  var deleting = false;
+  var paused = false;
+  var cursor = document.createElement('span');
+  cursor.className = 'typed-cursor';
+  cursor.textContent = '|';
+  el.textContent = '';
+  el.appendChild(cursor);
+  function tick() {
+    var phrase = phrases[idx];
+    if (paused) { paused = false; setTimeout(tick, 1800); return; }
+    if (!deleting) {
+      charIdx++;
+      el.textContent = phrase.slice(0, charIdx);
+      el.appendChild(cursor);
+      if (charIdx === phrase.length) { deleting = true; paused = true; }
+      setTimeout(tick, 65);
+    } else {
+      charIdx--;
+      el.textContent = phrase.slice(0, charIdx);
+      el.appendChild(cursor);
+      if (charIdx === 0) { deleting = false; idx = (idx + 1) % phrases.length; }
+      setTimeout(tick, 35);
+    }
+  }
+  setTimeout(tick, 600);
 })();
 </script>
 </body>
