@@ -1228,6 +1228,33 @@
   .pub-view-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
   .pub-view-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
 
+  /* ---- DOWNLOAD CV BUTTON ---- */
+  .btn-cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 1.4rem;
+    padding: 0.72rem 1.5rem;
+    background: var(--black);
+    color: var(--bg);
+    border: 2px solid var(--black);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .btn-cv:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--black);
+    transform: translateY(-2px);
+  }
+  .btn-cv svg { width: 16px; height: 16px; flex-shrink: 0; }
+
   /* ---- TYPING CURSOR ---- */
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
   .typed-cursor { display:inline-block; animation: blink 0.9s step-end infinite; color: var(--gold-deep); }
@@ -1288,6 +1315,14 @@
           <span class="dot"></span>
           <span><strong>Currently:</strong> AI Research Scientist at the California Medical Innovation Institute</span>
         </div>
+        <a class="btn-cv" href="cv.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download CV
+        </a>
       </div>
       <div class="hero-photo-wrap">
         <img class="hero-photo" src="nahid-zeinali.jpg" alt="Nahid Zeinali, AI Research Scientist" />
