@@ -1280,6 +1280,77 @@
   .pub-view-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
   .pub-view-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
 
+  /* ---- NEWS & UPDATES ---- */
+  .news-section { padding: 2.8rem 0; border-bottom: 1px solid var(--gray-line-soft); }
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1rem;
+  }
+  .news-card {
+    background: var(--bg);
+    border: 1px solid var(--gray-line);
+    padding: 1.1rem 1.2rem;
+    display: flex; flex-direction: column; gap: 0.45rem;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.22s;
+  }
+  .news-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 6px 20px -10px rgba(0,0,0,0.14);
+    transform: translateY(-3px);
+  }
+  .news-card-top { display: flex; align-items: center; gap: 0.55rem; }
+  .news-date { font-size: 0.75rem; color: var(--gray-muted); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .news-badge {
+    font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.12rem 0.48rem;
+  }
+  .news-badge.talk     { background: #dbeafe; color: #1e40af; }
+  .news-badge.paper    { background: var(--gold-soft); color: var(--gold-deep); }
+  .news-badge.position { background: #dcfce7; color: #166534; }
+  .news-badge.review   { background: #f3e8ff; color: #6b21a8; }
+  [data-theme="dark"] .news-badge.talk     { background: #1e3a5f; color: #93c5fd; }
+  [data-theme="dark"] .news-badge.paper    { background: #2a2200; color: var(--gold); }
+  [data-theme="dark"] .news-badge.position { background: #14532d; color: #86efac; }
+  [data-theme="dark"] .news-badge.review   { background: #3b0764; color: #d8b4fe; }
+  .news-text { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.5; }
+  .news-text strong { color: var(--black); font-weight: 600; }
+
+  /* ---- RESEARCH INTERESTS ---- */
+  .research-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .research-tag {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.52rem 1rem;
+    background: var(--bg); border: 1px solid var(--gray-line);
+    font-size: 0.87rem; font-weight: 600; color: var(--ink);
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .research-tag:hover {
+    background: var(--gold); border-color: var(--gold);
+    color: var(--black); transform: translateY(-2px);
+  }
+
+  /* ---- GITHUB STATS ---- */
+  .github-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    gap: 1.5rem; align-items: start;
+  }
+  @media (max-width: 720px) { .github-grid { grid-template-columns: 1fr; } }
+  .github-grid img {
+    width: 100%; display: block;
+    border: 1px solid var(--gray-line);
+  }
+  .github-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    margin-top: 1.2rem; font-size: 0.85rem; font-weight: 600;
+    color: var(--gray-text); text-decoration: none;
+    border-bottom: 1px solid var(--gray-line); padding-bottom: 0.1rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .github-link:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
   /* ---- DOWNLOAD CV BUTTON ---- */
   .btn-cv {
     display: inline-flex;
@@ -1479,6 +1550,66 @@
   </div>
 </section>
 
+<!-- NEWS & UPDATES -->
+<section id="news" class="news-section">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:1.8rem">
+      <h2 class="section-title">News &amp; updates</h2>
+    </div>
+    <div class="news-grid">
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <span class="news-date">Jun 2026</span>
+          <span class="news-badge talk">Talk</span>
+        </div>
+        <p class="news-text">Presenting at <strong>BOSC 2026</strong> — Evaluating the Performance of LLMs in Drafting Data Management Plans</p>
+      </div>
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <span class="news-date">Jun 2026</span>
+          <span class="news-badge talk">Talk</span>
+        </div>
+        <p class="news-text">Presenting at <strong>ARVO Annual Meeting 2026</strong> — Toward Envision Portal: A FAIR and AI-Ready Framework for Ophthalmic Imaging</p>
+      </div>
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <span class="news-date">2026</span>
+          <span class="news-badge review">Under Review</span>
+        </div>
+        <p class="news-text">New manuscript submitted — <strong>Evaluating the Performance of LLMs in Creating NIH Data Management Plans</strong></p>
+      </div>
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <span class="news-date">2025</span>
+          <span class="news-badge paper">Paper</span>
+        </div>
+        <p class="news-text">Published in <strong>CIN Journal</strong> — Using LLMs to Detect Anxiety and Nausea/Vomiting in Cancer Clinical Notes</p>
+      </div>
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <span class="news-date">2025</span>
+          <span class="news-badge paper">Paper</span>
+        </div>
+        <p class="news-text">Published in <strong>ACI Journal</strong> — Informatics Approach to Characterizing Spiritual Care Documentation in EHRs</p>
+      </div>
+
+      <div class="news-card">
+        <div class="news-card-top">
+          <span class="news-date">Feb 2025</span>
+          <span class="news-badge position">Position</span>
+        </div>
+        <p class="news-text">Joined <strong>California Medical Innovation Institute</strong> as AI Research Scientist</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
@@ -1501,6 +1632,30 @@
         <div class="qf-row"><span class="k">Publications</span><span class="v">15+ peer-reviewed</span></div>
         <div class="qf-row"><span class="k">Languages</span><span class="v">English · Persian</span></div>
       </aside>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH INTERESTS -->
+<section id="research">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Research interests</h2>
+      <p class="section-intro">Core areas spanning clinical AI, language models, and biomedical informatics.</p>
+    </div>
+    <div class="research-grid">
+      <span class="research-tag">🧠&nbsp; Large Language Models</span>
+      <span class="research-tag">🏥&nbsp; Clinical NLP</span>
+      <span class="research-tag">🔍&nbsp; Retrieval-Augmented Generation</span>
+      <span class="research-tag">🖼️&nbsp; Multimodal AI</span>
+      <span class="research-tag">📋&nbsp; EHR Analytics</span>
+      <span class="research-tag">🔬&nbsp; Biomedical Informatics</span>
+      <span class="research-tag">✨&nbsp; Generative AI</span>
+      <span class="research-tag">🎗️&nbsp; Cancer Symptom Detection</span>
+      <span class="research-tag">🏗️&nbsp; Transformer Architectures</span>
+      <span class="research-tag">🏷️&nbsp; Named Entity Recognition</span>
+      <span class="research-tag">📊&nbsp; FAIR Data Standards</span>
+      <span class="research-tag">⚕️&nbsp; Healthcare AI</span>
     </div>
   </div>
 </section>
@@ -2220,6 +2375,37 @@
   </div>
 </section>
 
+<!-- GITHUB ACTIVITY -->
+<section id="github">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">GitHub activity</h2>
+      <p class="section-intro">Open-source contributions and coding activity.</p>
+    </div>
+    <div class="github-grid">
+      <img
+        class="gh-img"
+        src="https://github-readme-stats.vercel.app/api?username=Nahidzeinali-web&show_icons=true&hide_border=true&bg_color=ffffff00&title_color=d6a900&icon_color=d6a900&text_color=595959&count_private=true"
+        data-light="https://github-readme-stats.vercel.app/api?username=Nahidzeinali-web&show_icons=true&hide_border=true&bg_color=ffffff00&title_color=d6a900&icon_color=d6a900&text_color=595959&count_private=true"
+        data-dark="https://github-readme-stats.vercel.app/api?username=Nahidzeinali-web&show_icons=true&hide_border=true&bg_color=00000000&title_color=FFCD00&icon_color=FFCD00&text_color=888888&count_private=true"
+        alt="Nahid Zeinali GitHub Stats"
+        width="495" height="195"
+      />
+      <img
+        class="gh-img"
+        src="https://github-readme-stats.vercel.app/api/top-langs/?username=Nahidzeinali-web&layout=compact&hide_border=true&bg_color=ffffff00&title_color=d6a900&text_color=595959"
+        data-light="https://github-readme-stats.vercel.app/api/top-langs/?username=Nahidzeinali-web&layout=compact&hide_border=true&bg_color=ffffff00&title_color=d6a900&text_color=595959"
+        data-dark="https://github-readme-stats.vercel.app/api/top-langs/?username=Nahidzeinali-web&layout=compact&hide_border=true&bg_color=00000000&title_color=FFCD00&text_color=888888"
+        alt="Top Languages"
+        width="380" height="165"
+      />
+    </div>
+    <a class="github-link" href="https://github.com/Nahidzeinali-web" target="_blank" rel="noopener noreferrer">
+      View full GitHub profile →
+    </a>
+  </div>
+</section>
+
 <!-- EDUCATION & RECOGNITION -->
 <section id="education" class="alt">
   <div class="container">
@@ -2487,6 +2673,16 @@
 
 /* ===== DARK MODE TOGGLE ===== */
 (function () {
+  /* sync GitHub stat images to current theme on page load */
+  (function () {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (dark) {
+      document.querySelectorAll('.gh-img').forEach(function (img) {
+        if (img.dataset.dark) img.src = img.dataset.dark;
+      });
+    }
+  })();
+
   var toggle = document.createElement('button');
   toggle.id = 'dark-toggle';
   toggle.setAttribute('aria-label', 'Toggle dark mode');
@@ -2497,8 +2693,12 @@
   hamburger.parentNode.insertBefore(toggle, hamburger);
   toggle.addEventListener('click', function () {
     var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    var newTheme = isDark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.querySelectorAll('.gh-img').forEach(function (img) {
+      img.src = newTheme === 'dark' ? img.dataset.dark : img.dataset.light;
+    });
   });
 })();
 
