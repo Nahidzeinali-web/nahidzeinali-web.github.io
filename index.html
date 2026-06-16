@@ -687,35 +687,6 @@
   }
 
   /* ============ EXPERTISE ============ */
-  .key-skills-wrapper { margin-bottom: 2.4rem; }
-  .key-skills-group { margin-bottom: 1.2rem; }
-  .key-skills-group:last-child { margin-bottom: 0; }
-  .key-skills-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gray-muted);
-    margin-bottom: 0.6rem;
-  }
-  .key-skills-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-  .skill-pill {
-    display: inline-block;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--ink);
-    background: var(--bg-soft);
-    border: 1px solid var(--gray-line);
-    padding: 0.3rem 0.75rem;
-    border-radius: 2px;
-    transition: background 0.18s, border-color 0.18s, color 0.18s;
-  }
-  .skill-pill:hover {
-    background: var(--gold-soft);
-    border-color: var(--gold);
-    color: var(--gold-deep);
-  }
-
   .exp-skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -2175,55 +2146,15 @@
       <p class="section-intro">Languages, frameworks, and tools I use across the AI/ML stack — from research prototyping to production deployment.</p>
     </div>
 
-    <div class="key-skills-wrapper">
-      <div class="key-skills-group">
-        <div class="key-skills-label">AI &amp; Language Models</div>
-        <div class="key-skills-pills">
-          <span class="skill-pill">Generative AI</span>
-          <span class="skill-pill">Large Language Models (LLMs)</span>
-          <span class="skill-pill">Deep Learning</span>
-          <span class="skill-pill">Machine Learning</span>
-          <span class="skill-pill">Natural Language Processing (NLP)</span>
-        </div>
-      </div>
-      <div class="key-skills-group">
-        <div class="key-skills-label">Methods &amp; Techniques</div>
-        <div class="key-skills-pills">
-          <span class="skill-pill">Prompt Engineering</span>
-          <span class="skill-pill">Retrieval-Augmented Generation (RAG)</span>
-          <span class="skill-pill">Statistical Modeling</span>
-          <span class="skill-pill">Predictive Analytics</span>
-          <span class="skill-pill">Data Science</span>
-        </div>
-      </div>
-      <div class="key-skills-group">
-        <div class="key-skills-label">Frameworks &amp; Tools</div>
-        <div class="key-skills-pills">
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">LangChain / LangGraph</span>
-          <span class="skill-pill">Hugging Face</span>
-          <span class="skill-pill">Vector Databases</span>
-          <span class="skill-pill">MLOps</span>
-        </div>
-      </div>
-      <div class="key-skills-group">
-        <div class="key-skills-label">Soft Skills</div>
-        <div class="key-skills-pills">
-          <span class="skill-pill">Research Leadership</span>
-          <span class="skill-pill">Cross-functional Collaboration</span>
-          <span class="skill-pill">Scientific Communication</span>
-          <span class="skill-pill">Mentorship</span>
-        </div>
-      </div>
-    </div>
-
     <div class="exp-skills-grid">
       <div class="skill-cell">
         <h3>LLMs &amp; Generative AI</h3>
         <ul>
+          <li>Large Language Models (LLMs)</li>
+          <li>Generative AI</li>
           <li>GPT, Llama, BERT, RoBERTa</li>
           <li>Retrieval-Augmented Generation (RAG)</li>
-          <li>Prompt engineering, fine-tuning</li>
+          <li>Prompt Engineering</li>
           <li>OpenAI API, agentic AI</li>
           <li>Transformer encoders / decoders</li>
         </ul>
@@ -2232,6 +2163,8 @@
       <div class="skill-cell">
         <h3>Deep Learning &amp; ML</h3>
         <ul>
+          <li>Machine Learning</li>
+          <li>Deep Learning</li>
           <li>PyTorch, TensorFlow, Keras</li>
           <li>Scikit-learn, XGBoost</li>
           <li>SHAP, model explainability</li>
@@ -2243,8 +2176,9 @@
       <div class="skill-cell">
         <h3>NLP Frameworks</h3>
         <ul>
+          <li>Natural Language Processing (NLP)</li>
           <li>Hugging Face Transformers</li>
-          <li>LangChain, LangGraph</li>
+          <li>LangChain / LangGraph</li>
           <li>LangSmith, Ollama</li>
           <li>Inference &amp; retrieval optimization</li>
         </ul>
@@ -2253,6 +2187,7 @@
       <div class="skill-cell">
         <h3>MLOps &amp; CI/CD</h3>
         <ul>
+          <li>MLOps</li>
           <li>MLflow, DVC, DagsHub</li>
           <li>Apache Airflow (Astro)</li>
           <li>Grafana, workflow automation</li>
@@ -2272,15 +2207,19 @@
       <div class="skill-cell">
         <h3>Databases &amp; Vector Stores</h3>
         <ul>
+          <li>Vector Databases</li>
+          <li>FAISS, ChromaDB, Pinecone</li>
           <li>PostgreSQL, MS SQL Server</li>
           <li>MongoDB, Cassandra</li>
-          <li>FAISS, ChromaDB, Pinecone</li>
         </ul>
       </div>
 
       <div class="skill-cell">
         <h3>Analytics &amp; Statistics</h3>
         <ul>
+          <li>Data Science</li>
+          <li>Statistical Modeling</li>
+          <li>Predictive Analytics</li>
           <li>Pandas, NumPy</li>
           <li>Matplotlib, Seaborn</li>
           <li>SPSS, SAS, STATA</li>
@@ -2291,7 +2230,7 @@
       <div class="skill-cell">
         <h3>Programming Languages</h3>
         <ul>
-          <li>Python (primary)</li>
+          <li>Python</li>
           <li>C, C++, C#</li>
           <li>JavaScript, MATLAB</li>
           <li>ASP.NET, Android</li>
@@ -2304,6 +2243,16 @@
           <li>SNOMED-CT</li>
           <li>ICD-10</li>
           <li>HIPAA</li>
+        </ul>
+      </div>
+      <div class="skill-cell">
+        <h3>Soft Skills</h3>
+        <ul>
+          <li>Research Leadership</li>
+          <li>Scientific Communication</li>
+          <li>Cross-functional Collaboration</li>
+          <li>Mentorship &amp; Teaching</li>
+          <li>Problem Solving</li>
         </ul>
       </div>
     </div>
