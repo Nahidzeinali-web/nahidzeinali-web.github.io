@@ -1270,7 +1270,7 @@
     color: var(--gray-muted);
     text-decoration: none;
     padding: 0.18rem 0.55rem;
-    margin-left: 0.6rem;
+    white-space: nowrap;
     font-size: 0.72rem;
     font-family: 'Source Sans 3', sans-serif;
     font-weight: 600;
@@ -1280,6 +1280,8 @@
   }
   .pub-view-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
   .pub-view-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
+  .pub-table th.pub-link-head, .pub-table td.pub-link-cell { width: 110px; text-align: right; white-space: nowrap; }
+  @media (max-width: 720px) { .pub-table td.pub-link-cell { text-align: left; width: auto; } .pub-table td.pub-link-cell:empty { display: none; } }
 
   /* ---- GITHUB STATS ---- */
   .github-grid {
@@ -1940,6 +1942,27 @@
       <p class="section-intro">16 peer-reviewed publications in JAMIA Open, Applied Clinical Informatics, JMIR Cancer, JCO Clinical Cancer Informatics, Journal of Pain and Symptom Management, IEEE, and other informatics, clinical, and AI venues.</p>
     </div>
 
+    <h3 class="pub-table-label">Preprints</h3>
+    <table class="pub-table">
+      <thead>
+        <tr>
+          <th style="width:40px;">#</th>
+          <th>Title &amp; Authors</th>
+          <th>Venue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="pub-num">—</td>
+          <td>
+            <div class="pub-title-cell">Evaluating the Performance of Large Language Models in Drafting NIH Data Management Plans</div>
+            <span class="pub-authors">Zeinali N., O’Neill J., Dong X., Hofstein Grady R., Praetzellis M., Riley B., Chodacki J., Patel B.</span>
+          </td>
+          <td class="pub-year-cell"><span class="pub-venue">arXiv · 2026</span></td>
+        </tr>
+      </tbody>
+    </table>
+
     <h3 class="pub-table-label">Under Review</h3>
     <table class="pub-table">
       <thead>
@@ -1950,14 +1973,6 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="pub-num">—</td>
-          <td>
-            <div class="pub-title-cell">Evaluating the Performance of LLMs in Creating NIH Data Management Plans</div>
-            <span class="pub-authors">Zeinali N., Patel B., et al.</span>
-          </td>
-          <td class="pub-year-cell"><span class="pub-badge review">Review</span></td>
-        </tr>
         <tr>
           <td class="pub-num">—</td>
           <td>
@@ -2759,6 +2774,8 @@
 (function () {
   /* Map: substring of paper title → canonical URL */
   var URLS = {
+    'Evaluating the Performance of Large Language Models in Drafting NIH Data Management Plans':
+      'https://doi.org/10.48550/arXiv.2611.14648',
     'Detecting Language-Related Disparities in Spiritual Care':
       'https://doi.org/10.1177/10436596261491239',
     'Using Large Language Models to Detect Anxiety':
@@ -2793,7 +2810,7 @@
       'https://scholar.google.com/citations?user=RRW-qkEAAAAJ&hl=en'
   };
 
-  var EXT_SVG = '<svg viewBox=”0 0 24 24” fill=”none” stroke=”currentColor” stroke-width=”2” stroke-linecap=”round” stroke-linejoin=”round”><path d=”M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6”/><polyline points=”15 3 21 3 21 9”/><line x1=”10” y1=”14” x2=”21” y2=”3”/></svg>';
+  var EXT_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
   function findUrl(text) {
     for (var key in URLS) {
@@ -2802,19 +2819,38 @@
     return null;
   }
 
-  document.querySelectorAll('.pub-table tbody tr').forEach(function (row) {
-    var titleEl = row.querySelector('.pub-title-cell');
-    if (!titleEl) return;
-    var titleText = titleEl.textContent.trim();
-    var url = findUrl(titleText);
-    if (!url) return;
-    var link = document.createElement('a');
-    link.className = 'pub-view-btn';
-    link.href = url;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.innerHTML = EXT_SVG + 'View Paper';
-    titleEl.appendChild(link);
+  document.querySelectorAll('.pub-table').forEach(function (table) {
+    var rows = table.querySelectorAll('tbody tr');
+    var urls = [];
+    var any = false;
+    rows.forEach(function (row) {
+      var titleEl = row.querySelector('.pub-title-cell');
+      var url = titleEl ? findUrl(titleEl.textContent.trim()) : null;
+      urls.push(url);
+      if (url) any = true;
+    });
+    if (!any) return;
+    var headRow = table.querySelector('thead tr');
+    if (headRow) {
+      var th = document.createElement('th');
+      th.className = 'pub-link-head';
+      th.textContent = 'Link';
+      headRow.appendChild(th);
+    }
+    rows.forEach(function (row, i) {
+      var td = document.createElement('td');
+      td.className = 'pub-link-cell';
+      if (urls[i]) {
+        var link = document.createElement('a');
+        link.className = 'pub-view-btn';
+        link.href = urls[i];
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.innerHTML = EXT_SVG + 'View Paper';
+        td.appendChild(link);
+      }
+      row.appendChild(td);
+    });
   });
 })();
 
